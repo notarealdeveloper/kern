@@ -19,5 +19,5 @@ source = "https://github.com/notarealdeveloper/drivers"
 download = "https://pypi.org/project/drivers/#files"
 
 [project.scripts]
-input-pdf   = "drivers.pdf.__main__:main"
-input-image = "drivers.image.__main__:main"
+drivers-pdf   = "drivers.pdf.__main__:main"
+drivers-image = "drivers.image.__main__:main"
