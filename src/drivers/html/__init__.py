@@ -1,2 +1,2 @@
-from .pdf import *
+from .html import *
 from .main import *

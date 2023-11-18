@@ -9,7 +9,6 @@ from functools import lru_cache
 
 def image_and_text_to_text(image, text):
 
-
     import assure
     from mmry import Cache
 
