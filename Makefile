@@ -5,7 +5,7 @@ build:
 	python -m build
 
 install: build
-	pip install dist/*.tar.gz
+	pip install dist/*.whl
 
 develop:
 	pip install -e .
@@ -20,13 +20,13 @@ clean:
 	rm -rvf dist/ build/ src/*.egg-info
 
 push-test:
-	python -m twine upload --repository testpypi dist/*
+	python -m twine upload --repository testpypi dist/*.whl
 
 pull-test:
 	pip install -i https://test.pypi.org/simple/ $(PKG)
 
 push-prod:
-	python -m twine upload dist/*
+	python -m twine upload dist/*.whl
 
 pull-prod:
 	pip install $(PKG)
