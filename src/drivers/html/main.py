@@ -18,16 +18,14 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     if args.path is not None:
-        bytes = open(args.path, 'rb').read()
+        text = open(args.path, 'r').read()
     else:
-        bytes = sys.stdin.buffer.read().decode()
+        text = sys.stdin.buffer.read().decode()
 
-    arg = arg.decode()
-
-    if is_url(arg):
-        html = url_to_html(arg)
+    if is_url(text):
+        html = url_to_html(text)
     else:
-        html = arg
+        html = text
 
     text = html_to_text(html)
     print(text)
