@@ -1,2 +1,3 @@
-from .lib import *
-from .bin import *
+from .image import *
+from .html import *
+from .pdf import *
