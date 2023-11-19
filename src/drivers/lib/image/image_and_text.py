@@ -45,6 +45,3 @@ def load_model_image_and_text_to_text():
     processor = ViltProcessor.from_pretrained(name)
     model = ViltForQuestionAnswering.from_pretrained(name)
     return (processor, model)
-
-
-and_text_to_text = image_and_text_to_text

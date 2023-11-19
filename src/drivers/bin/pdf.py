@@ -3,11 +3,15 @@
 __all__ = ['main']
 
 import sys
-import argparse
 
 def main(argv=None):
+
+    import argparse
+    from drivers import pdf_to_text
+
     if argv is None:
         argv = sys.argv[1:]
+
     parser = argparse.ArgumentParser('pdf')
     parser.add_argument('path', nargs='?')
     args = parser.parse_args(argv)
@@ -17,7 +21,6 @@ def main(argv=None):
     else:
         file = sys.stdin.buffer
 
-    from . import pdf_to_text
     text = pdf_to_text(file)
     print(text)
 

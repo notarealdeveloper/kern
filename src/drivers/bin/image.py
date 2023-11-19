@@ -7,8 +7,8 @@ import sys
 def main(argv=None):
 
     import argparse
-    from . import image_to_text
-    from . import image_and_text_to_text
+    from drivers import image_to_text
+    from drivers import image_and_text_to_text
 
     if argv is None:
         argv = sys.argv[1:]
