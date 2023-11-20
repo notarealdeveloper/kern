@@ -7,9 +7,13 @@ authors = [
 description = "Unix input drivers for Software 2.0"
 dependencies = [
     "pytest",
+    "requests",
+    "bs4",
+    "fleep",
+    "validators",
     "Pillow",
-    "transformers",
     "pypdf",
+    "transformers",
     "assure",
     "mmry",
 ]
@@ -25,3 +29,4 @@ drivers-html  = "drivers.html:main"
 pdf           = "drivers.pdf:main"
 image         = "drivers.image:main"
 html          = "drivers.html:main"
+input         = "drivers.input:main"
