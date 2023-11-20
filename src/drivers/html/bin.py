@@ -7,9 +7,9 @@ import sys
 def main(argv=None):
 
     import argparse
-    from drivers import text_is_url
-    from drivers import url_to_html
-    from drivers import html_to_text
+    from drivers.html import text_is_url
+    from drivers.html import url_to_html
+    from drivers.html import html_to_text
 
     if argv is None:
         argv = sys.argv[1:]

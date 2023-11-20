@@ -9,7 +9,7 @@ def test_image_lib_1_image_to_text():
 def test_image_lib_1_image_and_text_to_text():
     path = 'root/usr/share/cats.jpg'
     text = image.and_text_to_text(path, "How many cats?")
-    assert 'cat' in text
+    assert '2' in text
 
 def test_image_bin_1_image_to_text():
     pipe = os.popen("cat root/usr/share/cats.jpg | image")
