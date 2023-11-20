@@ -1,2 +1,3 @@
+from .bin import main
 from .lib import *
-from .bin import *
+to_text = html_to_text
