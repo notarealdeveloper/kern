@@ -1,3 +1,3 @@
-from .image import *
-from .html import *
-from .pdf import *
+from . import image
+from . import html
+from . import pdf

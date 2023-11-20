@@ -7,7 +7,7 @@ import sys
 def main(argv=None):
 
     import argparse
-    from drivers import pdf_to_text
+    from drivers import pdf
 
     if argv is None:
         argv = sys.argv[1:]
@@ -21,7 +21,7 @@ def main(argv=None):
     else:
         file = sys.stdin.buffer
 
-    text = pdf_to_text(file)
+    text = pdf.to_text(file)
     print(text)
 
 if __name__ == '__main__':

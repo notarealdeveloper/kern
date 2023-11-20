@@ -10,5 +10,3 @@ def pdf_to_text(file):
     reader = pypdf.PdfReader(file)
     pages = [page.extract_text() for page in reader.pages]
     return '\n\n'.join(pages)
-
-to_text = pdf_to_text
