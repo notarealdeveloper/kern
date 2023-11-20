@@ -8,7 +8,6 @@ import shutil
 import argparse
 import subprocess
 
-
 def infer_ext_from_path(path):
     ext = path.split('.')[-1]
     return ext
@@ -82,7 +81,7 @@ def main(argv=None):
         cmd = EXT_TO_CMD[ext]
         args = sys.argv[2:]
 
-    command = f'drivers-{cmd}'
+    command = f'input-{cmd}'
 
     if cmd not in CMDS:
         print(f"could not infer input command", file=sys.stderr)
@@ -92,7 +91,6 @@ def main(argv=None):
         print(f"bad command: {command}", file=sys.stderr)
         sys.exit(1)
 
-    #proc = subprocess.run([command, *args])
     proc = subprocess.Popen([command, *args], stdin=subprocess.PIPE)
     proc.communicate(bytes)
 
