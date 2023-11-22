@@ -1,6 +1,6 @@
 [project]
 name = "drivers"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
 ]
@@ -15,7 +15,7 @@ dependencies = [
     "pypdf",
     "transformers",
     "assure",
-    "mmry",
+    "mmry >= 0.0.3",
 ]
 
 [project.urls]

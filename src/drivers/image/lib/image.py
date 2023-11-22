@@ -16,11 +16,11 @@ def image_to_text(image):
     bytes = assure.bytes(image)
 
     cache = Cache('image_to_text')
-    if cache.have(bytes):
-        return cache.load(bytes).decode()
+    if cache.have_blob(bytes):
+        return cache.load_blob(bytes).decode()
 
     text = image_to_text_nocache(bytes)
-    cache.save(bytes, text.encode())
+    cache.save_blob(bytes, text.encode())
     return text
 
 
