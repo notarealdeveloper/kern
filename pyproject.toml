@@ -1,10 +1,10 @@
 [project]
 name = "kern"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
 ]
-description = "Unix syscalls for Software 2.0"
+description = "Unix kernel for Software 2.0"
 dependencies = [
     "pytest",
     "requests",

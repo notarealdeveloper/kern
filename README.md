@@ -1,6 +1,6 @@
 # kern
 
-Unix syscalls for Software 2.0
+Unix kernel for Software 2.0
 
 ## image
 
