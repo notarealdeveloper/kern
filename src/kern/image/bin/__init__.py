@@ -7,7 +7,7 @@ import sys
 def main(argv=None):
 
     import argparse
-    from drivers import image
+    from kern import image
 
     if argv is None:
         argv = sys.argv[1:]

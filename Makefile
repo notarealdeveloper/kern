@@ -1,4 +1,4 @@
-PKG = drivers
+PKG = kern
 
 build:
 	pip install build

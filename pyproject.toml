@@ -1,10 +1,10 @@
 [project]
-name = "drivers"
+name = "kern"
 version = "0.0.5"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
 ]
-description = "Unix input drivers for Software 2.0"
+description = "Unix syscalls for Software 2.0"
 dependencies = [
     "pytest",
     "requests",
@@ -15,18 +15,18 @@ dependencies = [
     "pypdf",
     "transformers",
     "assure",
-    "mmry >= 0.0.4",
+    "mmry >= 0.0.5",
 ]
 
 [project.urls]
-source = "https://github.com/notarealdeveloper/drivers"
-download = "https://pypi.org/project/drivers/#files"
+source = "https://github.com/notarealdeveloper/kern"
+download = "https://pypi.org/project/kern/#files"
 
 [project.scripts]
-input       = "drivers.__main__:main"
-input-pdf   = "drivers.pdf:main"
-input-image = "drivers.image:main"
-input-html  = "drivers.html:main"
-pdf         = "drivers.pdf:main"
-image       = "drivers.image:main"
-html        = "drivers.html:main"
+input       = "kern.__main__:main"
+input-pdf   = "kern.pdf:main"
+input-image = "kern.image:main"
+input-html  = "kern.html:main"
+pdf         = "kern.pdf:main"
+image       = "kern.image:main"
+html        = "kern.html:main"

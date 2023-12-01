@@ -1,11 +1,11 @@
-# drivers
+# kern
 
-Unix input drivers for Software 2.0
+Unix syscalls for Software 2.0
 
 ## image
 
 ```python
-from drivers import image
+from kern import image
 
 image.to_text('files/cats.jpg')
 'a cat laying on a blanket next to a cat laying on a bed'
@@ -19,7 +19,7 @@ a cat laying on a blanket next to a cat laying on a bed
 ## image and text
 
 ```python
-from drivers import image
+from kern import image
 
 image.and_text_to_text('files/cats.jpg', "How many cats?")
 '2'
@@ -51,7 +51,7 @@ cats
 ## pdf
 
 ```python
-from drivers import pdf
+from kern import pdf
 file = "files/chicken.pdf"
 text = pdf.to_text(file)
 text.count('chicken')
@@ -66,7 +66,7 @@ Chicken Chicken Chicken: Chicken Chicken
 ## html
 
 ```python
-from drivers import html
+from kern import html
 page = "<html><h1><b>Hello,</b></h1><h2><i> world</i></h2></html>"
 html.to_text(page)
 Hello, world

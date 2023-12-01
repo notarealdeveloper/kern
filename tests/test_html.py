@@ -1,9 +1,9 @@
 import os
-import drivers
+import kern
 
 def test_html_lib():
     html = "<html><style></style><body><h1><b>Hello,</b></h1><h2><i> world</i></h2></body></html>"
-    text = drivers.html.to_text(html)
+    text = kern.html.to_text(html)
     assert 'Hello, world' in text
 
 def test_html_bin():

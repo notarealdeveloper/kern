@@ -1,5 +1,5 @@
 import os
-from drivers import pdf
+from kern import pdf
 
 def test_pdf_lib():
     file = "files/chicken.pdf"

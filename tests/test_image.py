@@ -1,5 +1,5 @@
 import os
-from drivers import image
+from kern import image
 
 def test_image_lib_1_image_to_text():
     file = 'files/cats.jpg'

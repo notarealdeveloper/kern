@@ -7,7 +7,7 @@ import sys
 def main(argv=None):
 
     import argparse
-    from drivers import pdf
+    from kern import pdf
 
     if argv is None:
         argv = sys.argv[1:]
