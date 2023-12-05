@@ -1,3 +1,3 @@
 from .bin import main
-from .lib import pdf_to_text
+from .lib import *
 to_text = pdf_to_text
