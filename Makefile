@@ -6,12 +6,6 @@ build: build-deps
 install: build
 	pip install dist/*.whl
 
-build-dammit:
-	python -m build -nx
-
-install-dammit: build-dammit
-	pip install --no-deps --no-compile --no-build-isolation dist/*.tar.gz
-
 develop:
 	pip install -e .
 
