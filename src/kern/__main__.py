@@ -28,21 +28,22 @@ def main(argv=None):
     blobs_with_types = []
     for stream in streams:
         blob = stream.read()
+
+        type = None
         if kern.is_image(blob):
-            proc = subprocess.Popen(["input-image"], stdin=subprocess.PIPE)
-            proc.communicate(blob)
-        if kern.is_pdf(blob):
-            proc = subprocess.Popen(["input-pdf"], stdin=subprocess.PIPE)
-            proc.communicate(blob)
-        if kern.is_doc(blob):
-            proc = subprocess.Popen(["input-doc"], stdin=subprocess.PIPE)
-            proc.communicate(blob)
-        if kern.is_html(blob):
-            proc = subprocess.Popen(["input-html"], stdin=subprocess.PIPE)
-            proc.communicate(blob)
-        if kern.is_url(blob):
-            proc = subprocess.Popen(["input-url"], stdin=subprocess.PIPE)
-            proc.communicate(blob)
+            type = 'image'
+        elif kern.is_pdf(blob):
+            type = 'pdf'
+        elif kern.is_doc(blob):
+            type = 'doc'
+        elif kern.is_html(blob):
+            type = 'html'
+        elif kern.is_url(blob):
+            type = 'url'
+        else:
+            raise TypeError(f"Not sure how to convert to text: {blob!r}")
+        proc = subprocess.Popen([f"input-{type}"], stdin=subprocess.PIPE)
+        proc.communicate(blob)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
