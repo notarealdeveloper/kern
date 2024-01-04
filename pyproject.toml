@@ -1,19 +1,20 @@
 [project]
 name = "kern"
-version = "0.0.8"
+version = "0.0.9"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
     { name="Michael Chen", email="michael.chen@aicadium.ai" },
 ]
 description = "Unix kernel for Software 2.0"
 dependencies = [
-    "pytest",
+    "filetype",
+    "pypandoc",
+    "pypdf",
+    "validators",
     "requests",
     "bs4",
-    "fleep",
-    "validators",
+    "pytest",
     "Pillow",
-    "pypdf",
     "transformers",
     "assure",
     "mmry >= 0.0.5",
@@ -28,7 +29,8 @@ input       = "kern.__main__:main"
 input-pdf   = "kern.pdf:main"
 input-image = "kern.image:main"
 input-html  = "kern.html:main"
+input-doc   = "kern.doc:main"
 pdf         = "kern.pdf:main"
 image       = "kern.image:main"
 html        = "kern.html:main"
-
+doc         = "kern.doc:main"

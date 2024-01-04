@@ -1,12 +1,23 @@
 __all__ = [
-    'text_is_url',
+    'is_url',
+    'is_html',
     'url_to_html',
     'html_to_text',
 ]
 
-def text_is_url(text):
+def is_url(arg):
+    if isinstance(arg, bytes):
+        arg = arg.decode()
     import validators
-    return bool(validators.url(text))
+    return bool(validators.url(arg))
+
+def is_html(arg):
+    if isinstance(arg, bytes):
+        arg = arg.decode()
+    for tag in ('<html', '<doctype', '<meta'):
+        if tag in arg.lower():
+            return True
+    return False
 
 def url_to_html(url):
     import requests

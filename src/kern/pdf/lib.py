@@ -1,7 +1,12 @@
 __all__ = [
     'pdf_to_pages',
     'pdf_to_text',
+    'is_pdf',
 ]
+    
+def is_pdf(bytes):
+    from kern import infer_type
+    return infer_type(bytes) == 'pdf'
 
 def pdf_to_pages(file):
     import pypdf

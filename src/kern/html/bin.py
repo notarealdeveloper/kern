@@ -7,7 +7,7 @@ import sys
 def main(argv=None):
 
     import argparse
-    from kern.html import text_is_url
+    from kern.html import is_url
     from kern.html import url_to_html
     from kern.html import html_to_text
 
@@ -22,7 +22,7 @@ def main(argv=None):
     else:
         text = sys.stdin.buffer.read().decode()
 
-    if text_is_url(text):
+    if is_url(text):
         html = url_to_html(text)
     else:
         html = text
