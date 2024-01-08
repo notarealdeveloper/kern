@@ -13,7 +13,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
     parser = argparse.ArgumentParser('input')
-    parser.add_argument('files', nargs='*')
+    parser.add_argument('query', nargs='?')
     args = parser.parse_args(argv)
 
     streams = []
@@ -21,9 +21,10 @@ def main(argv=None):
         stream = sys.stdin.buffer
         streams.append(stream)
 
-    for file in args.files:
-        stream = open(file, 'rb')
-        streams.append(stream)
+    if args.query:
+        query = (args.query,)
+    else:
+        query = ()
 
     blobs_with_types = []
     for stream in streams:
@@ -42,7 +43,7 @@ def main(argv=None):
             type = 'url'
         else:
             raise TypeError(f"Not sure how to convert to text: {blob!r}")
-        proc = subprocess.Popen([f"input-{type}"], stdin=subprocess.PIPE)
+        proc = subprocess.Popen([f"input-{type}", *query], stdin=subprocess.PIPE)
         proc.communicate(blob)
 
 if __name__ == '__main__':
