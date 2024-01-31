@@ -16,10 +16,7 @@ def main(argv=None):
     parser.add_argument('query', nargs='?')
     args = parser.parse_args(argv)
 
-    streams = []
-    if not os.isatty(sys.stdin.fileno()):
-        stream = sys.stdin.buffer
-        streams.append(stream)
+    query = (args.query,) if args.query else ()
 
     if args.query:
         query = (args.query,)
