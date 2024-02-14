@@ -1,6 +1,6 @@
 [project]
 name = "kern"
-version = "0.0.13"
+version = "0.0.14"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
     { name="Michael Chen", email="michael.chen@aicadium.ai" },
@@ -18,7 +18,7 @@ dependencies = [
     "av",
     "transformers",
     "assure",
-    "mmry >= 0.0.5",
+    "mmry",
 ]
 
 [project.urls]
