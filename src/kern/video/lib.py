@@ -17,29 +17,6 @@ __all__ = [
 import os
 import sys
 
-def read_video(container, indices):
-    import numpy as np
-    frames = []
-    container.seek(0)
-    start_index = indices[0]
-    end_index = indices[-1]
-    for i, frame in enumerate(container.decode(video=0)):
-        if i > end_index:
-            break
-        if i >= start_index and i in indices:
-            frames.append(frame)
-    return np.stack([x.to_ndarray(format="rgb24") for x in frames])
-
-
-def sample_frame_indices(clip_len, frame_sample_rate, seg_len):
-    import numpy as np
-    converted_len = int(clip_len * frame_sample_rate)
-    end_idx = np.random.randint(converted_len, seg_len)
-    start_idx = end_idx - converted_len
-    indices = np.linspace(start_idx, end_idx, num=clip_len)
-    indices = np.clip(indices, start_idx, end_idx - 1).astype(np.int64)
-    return indices
-
 
 def get_classes():
     # model predicts one of the 400 Kinetics-400 classes
@@ -58,23 +35,77 @@ def get_classes():
     return dict(line.split(',') for line in content.splitlines())
 
 
-def video_to_text(video_bytes):
+def read_video(container, indices, format="rgb24"):
+    """
+    Decode the video with PyAV decoder.
+
+    container: av.container.input.InputContainer.
+    indices: list[int]. List of frame indices to decode.
+    returns: numpy array of decoded frames shape (num_frames, height, width, 3).
+    """
+    # https://pyav.org/docs/develop/cookbook/basics.html
+
+    import numpy as np
+    stream = container.streams.video[0]
+    stream.thread_type = "AUTO"
+
+    frames = []
+    container.seek(0)
+    start_index = indices[0]
+    end_index = indices[-1]
+    for i, frame in enumerate(container.decode(video=0)):
+        if i > end_index:
+            break
+        if i >= start_index and i in indices:
+            frames.append(frame)
+    return np.stack([x.to_ndarray(format=format) for x in frames])
+
+
+def sample_frame_indices(num_frames_to_sample, video_total_frames):
+    #converted_len = int(clip_len * frame_sample_rate)
+    #end_idx = np.random.randint(converted_len, seg_len)
+    #start_idx = end_idx - converted_len
+    end_idx = video_total_frames
+    start_idx = 0
+    import numpy as np
+    indices = np.linspace(start_idx, end_idx, num=num_frames_to_sample)
+    indices = np.clip(indices, start_idx, end_idx - 1).astype(np.int64)
+    return indices
+
+
+def video_to_text(video):
+
+    import assure
+    from mmry import Cache
+
+    bytes = assure.bytes(video)
+
+    cache = Cache('video_to_text')
+    if cache.have_blob(bytes):
+        return cache.load_blob(bytes).decode()
+
+    text = video_to_text_nocache(bytes)
+    cache.save_blob(bytes, text.encode())
+    return text
+
+
+def video_to_text_nocache(video_bytes):
 
     import av
     import io
+    import kern
     import torch
     from transformers import VivitImageProcessor, VivitForVideoClassification
 
-    container = av.open(io.BytesIO(video_bytes))
+    format = kern.infer_type(video_bytes)
+    container = av.open(io.BytesIO(video_bytes), format=format)
 
-    # sample 32 frames
     indices = sample_frame_indices(
-        clip_len=32,
-        frame_sample_rate=4,
-        seg_len=container.streams.video[0].frames,
+        num_frames_to_sample=32,
+        video_total_frames=container.streams.video[0].frames,
     )
 
-    video = read_video(container=container, indices=indices)
+    video = read_video(container=container, indices=indices, format="rgb24")
 
     import warnings
     warnings.filterwarnings('ignore', category=UserWarning)

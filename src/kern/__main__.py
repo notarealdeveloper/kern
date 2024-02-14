@@ -30,6 +30,8 @@ def main(argv=None):
         type = None
         if kern.is_image(blob):
             type = 'image'
+        if kern.is_video(blob):
+            type = 'video'
         elif kern.is_pdf(blob):
             type = 'pdf'
         elif kern.is_doc(blob):
