@@ -15,6 +15,7 @@ dependencies = [
     "bs4",
     "pytest",
     "Pillow",
+    "av",
     "transformers",
     "assure",
     "mmry >= 0.0.5",
@@ -30,7 +31,9 @@ input-pdf   = "kern.pdf:main"
 input-image = "kern.image:main"
 input-html  = "kern.html:main"
 input-doc   = "kern.doc:main"
+input-video = "kern.video:main"
 pdf         = "kern.pdf:main"
 image       = "kern.image:main"
 html        = "kern.html:main"
 doc         = "kern.doc:main"
+video       = "kern.video:main"
